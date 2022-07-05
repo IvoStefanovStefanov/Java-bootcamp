@@ -1,0 +1,9 @@
+package com.academy.javabootcamp.repository;
+
+import com.academy.javabootcamp.model.Image;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface ImageRepository extends JpaRepository<Image, Long> {
+
+}
