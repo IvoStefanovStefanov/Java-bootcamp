@@ -1,0 +1,10 @@
+{
+  "category": 3,
+  "brand": "VW",
+  "model": "Transporter",
+  "image": "https://images.app.goo.gl/newImage.jpg",
+  "images": [
+    "https://images.app.goo.gl/newImage.jpg"
+  ],
+  "year":2022
+}

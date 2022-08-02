@@ -1,0 +1,13 @@
+{
+  "title": "",
+  "image": "http://localhost:8080/rooms556.jpg",
+  "images": [
+    "http://localhost:8080/rooms155.jpg"
+  ],
+  "description": "",
+  "facilities": "television1",
+  "area": -1,
+  "people": 3,
+  "price": 51,
+  "count": 1
+}

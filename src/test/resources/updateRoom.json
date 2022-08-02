@@ -1,0 +1,13 @@
+{
+  "title": "probna staq2",
+  "image": "http://localhost:8080/rooms556.jpg",
+  "images": [
+    "http://localhost:8080/myrooms155.jpg"
+  ],
+  "description": "my new room",
+  "facilities": "television1",
+  "area": 30.555,
+  "people": 3,
+  "price": 51,
+  "count": 1
+}

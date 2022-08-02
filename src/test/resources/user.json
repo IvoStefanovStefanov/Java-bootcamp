@@ -1,0 +1,8 @@
+{
+  "email":"new_test@abv.bg",
+  "password": "1111111",
+  "name":"Viktor",
+  "surname": "Todorov",
+  "phone": "0987575757",
+  "roles": ["client"]
+}
