@@ -1,9 +1,10 @@
 {
-  "user": 36,
+  "user": 1,
   "start_date": "2022-06-02",
   "end_date": "2022-06-10",
   "adults": 2,
-  "kids":2,
+  "kids":0,
   "type_bed": "king size",
-  "type_view": "garden"
+  "type_view": "garden",
+  "status": "new"
 }

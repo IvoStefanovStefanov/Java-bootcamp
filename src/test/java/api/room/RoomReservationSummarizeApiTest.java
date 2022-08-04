@@ -64,7 +64,7 @@ public class RoomReservationSummarizeApiTest {
                         "end_date", is("2022-06-03"),
                         "days", is(1),
                         "adults", is(2),
-                        "kids", is(2));
+                        "kids", is(0));
     }
 
     @Test

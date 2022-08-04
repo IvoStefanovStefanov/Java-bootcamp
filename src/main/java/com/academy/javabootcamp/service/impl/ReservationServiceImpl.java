@@ -49,6 +49,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .user(reservation.getUser())
                 .created(reservation.getCreated())
                 .status(reservation.getStatus())
+                .days(reservation.getDays())
                 .build();
 
 

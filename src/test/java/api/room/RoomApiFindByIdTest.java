@@ -1,6 +1,10 @@
 package api.room;
 
+import api.user.JsonResourcesReader;
 import api.user.JwtTokenGenerator;
+import io.restassured.http.ContentType;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -13,12 +17,34 @@ public class RoomApiFindByIdTest {
 
     private static JwtTokenGenerator jwtTokenGenerator = new JwtTokenGenerator();
 
+    private static final JsonResourcesReader jsonResourcesReader = new JsonResourcesReader();
+
+    private static int saveRoomId;
+
+    @BeforeClass
+    public static void createRoom() {
+        String jwt = jwtTokenGenerator.generateAdminToken();
+        String room = jsonResourcesReader.readFile("classpath:room.json");
+
+        saveRoomId = given()
+                .header("Authorization", "Bearer " + jwt)
+                .body(room)
+                .contentType(ContentType.JSON)
+                .when()
+                .post("/rooms")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.CREATED.value())
+                .extract()
+                .path("id");
+    }
+
     @Test
     public void getRoomFindByIdWithTokenMustReturnOk() {
         String jwt = jwtTokenGenerator.generateUserToken();
         given()
                 .header("Authorization", "Bearer " + jwt)
-                .pathParams("id", 207)
+                .pathParams("id", saveRoomId)
                 .when()
                 .get("rooms/{id}")
                 .then()
@@ -29,7 +55,7 @@ public class RoomApiFindByIdTest {
     @Test
     public void getRoomFindByIdWithoutTokenMustReturnUnauthorized() {
         given()
-                .pathParam("id", 159)
+                .pathParam("id", saveRoomId)
                 .when()
                 .get("/rooms/{id}")
                 .then()
@@ -42,12 +68,26 @@ public class RoomApiFindByIdTest {
         String jwt = jwtTokenGenerator.generateUserToken();
         given()
                 .header("Authorization", "Bearer " + jwt)
-                .pathParams("id", 194)
+                .pathParams("id", saveRoomId+1)
                 .when()
                 .get("rooms/{id}")
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.NOT_FOUND.value());
+    }
+
+    @AfterClass
+    public static void deleteRoom() {
+        String jwt = jwtTokenGenerator.generateAdminToken();
+
+        given()
+                .header("Authorization", "Bearer " + jwt)
+                .pathParams("id", saveRoomId)
+                .when()
+                .delete("/rooms/{id}")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.NO_CONTENT.value());
     }
 
 }

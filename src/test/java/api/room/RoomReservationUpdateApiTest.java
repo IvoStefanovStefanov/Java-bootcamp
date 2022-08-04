@@ -79,7 +79,7 @@ public class RoomReservationUpdateApiTest {
                         "end_date", is("2022-06-10"),
                         "days", is(8),
                         "adults", is(2),
-                        "kids", is(2),
+                        "kids", is(0),
                         "type_bed", is("king size"),
                         "type_view", is("garden"));
     }

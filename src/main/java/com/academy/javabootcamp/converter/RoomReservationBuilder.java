@@ -85,7 +85,9 @@ public class RoomReservationBuilder {
                 .typeBed(reservation.getTypeBed())
                 .typeView(reservation.getTypeView())
                 .price(roomReservationCalculator.calculatePriceReservation(reservation, foundRoom))
+                .days(roomReservationCalculator.calculateDaysReservation(reservation))
                 .created(Date.from(Instant.now()))
+                .status(reservation.getStatus())
                 .build();
         return newReservation;
     }
