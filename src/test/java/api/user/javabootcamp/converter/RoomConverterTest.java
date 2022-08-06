@@ -1,5 +1,8 @@
-package com.academy.javabootcamp.converter;
+package api.user.javabootcamp.converter;
 
+import com.academy.javabootcamp.converter.RoomDetailsConverter;
+import com.academy.javabootcamp.converter.RoomSaveConverter;
+import com.academy.javabootcamp.converter.RoomUpdateConverter;
 import com.academy.javabootcamp.dto.*;
 import com.academy.javabootcamp.model.Image;
 import com.academy.javabootcamp.model.Room;

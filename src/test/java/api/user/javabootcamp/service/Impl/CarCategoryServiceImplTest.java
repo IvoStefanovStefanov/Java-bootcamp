@@ -1,4 +1,4 @@
-package com.academy.javabootcamp.service.Impl;
+package api.user.javabootcamp.service.Impl;
 
 import com.academy.javabootcamp.exception.ResourceNotFound;
 import com.academy.javabootcamp.model.CarCategory;

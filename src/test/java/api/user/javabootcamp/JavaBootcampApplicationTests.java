@@ -1,4 +1,4 @@
-package com.academy.javabootcamp;
+package api.user.javabootcamp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

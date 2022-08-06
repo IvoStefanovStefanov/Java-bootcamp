@@ -1,4 +1,4 @@
-package com.academy.javabootcamp.converter.carConverter;
+package api.user.javabootcamp.converter.carConverter;
 
 import com.academy.javabootcamp.converter.TransferSummarizeConverter;
 import com.academy.javabootcamp.dto.TransferSummarizeResponse;

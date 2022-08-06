@@ -1,4 +1,4 @@
-package com.academy.javabootcamp.service;
+package api.user.javabootcamp.service;
 
 import com.academy.javabootcamp.exception.ResourceNotFound;
 import com.academy.javabootcamp.repository.UserRepository;

@@ -1,5 +1,6 @@
-package com.academy.javabootcamp.exception;
+package api.user.javabootcamp.exception;
 
+import com.academy.javabootcamp.exception.ReservationDataNotAppropriateException;
 import com.academy.javabootcamp.model.Reservation;
 import com.academy.javabootcamp.model.Room;
 import com.academy.javabootcamp.validator.SaveReservationValidator;

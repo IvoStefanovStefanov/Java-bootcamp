@@ -1,13 +1,12 @@
 package com.academy.javabootcamp.controller;
 
 
-import com.academy.javabootcamp.converter.CarSaveConverter;
-import com.academy.javabootcamp.converter.CarTransferBuilder;
-import com.academy.javabootcamp.converter.TransferSummarizeConverter;
-import com.academy.javabootcamp.converter.TransfersByCarResponseConverter;
+import com.academy.javabootcamp.converter.*;
 import com.academy.javabootcamp.dto.*;
 import com.academy.javabootcamp.model.Car;
+import com.academy.javabootcamp.model.CarCategory;
 import com.academy.javabootcamp.model.CarTransfer;
+import com.academy.javabootcamp.service.CarCategoryService;
 import com.academy.javabootcamp.service.CarService;
 import com.academy.javabootcamp.validator.CarTransferValidator;
 import lombok.AllArgsConstructor;
@@ -31,6 +30,8 @@ public class CarController {
     private final CarTransferBuilder carTransferBuilder;
     private final TransferSummarizeConverter transferSummarizeConverter;
     private final CarTransferValidator carTransferValidator;
+    private final CarCategortyBuilder carCategortyBuilder;
+    private final CarCategoryService carCategoryService;
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
@@ -89,5 +90,41 @@ public class CarController {
         carTransferValidator.validateTransferDate(transferSummarizeRequest, id);
         CarTransfer newCarTransfer = carTransferBuilder.buildSummarize(transferSummarizeRequest, id);
         return ResponseEntity.ok(transferSummarizeConverter.toTransferSummarizeResponse(newCarTransfer));
+    }
+
+    @PostMapping(value = "/categories")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<CarCategoryResponse> saveCarCategories(@RequestBody @Valid CarCategoryRequest carCategoryRequest) {
+        CarCategory carCategory = carCategortyBuilder.toCarCategory(carCategoryRequest);
+        CarCategory savedCarCategory = carCategoryService.save(carCategory);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(carCategortyBuilder.toCarCategoryResponse(savedCarCategory));
+    }
+
+    @GetMapping(value = "/categories")
+    public ResponseEntity<List<CarCategoryResponse>> findAllCategories() {
+        List<CarCategory> findAllCarCategories = carCategoryService.findAll();
+        return ResponseEntity.ok(findAllCarCategories
+                .stream()
+                .map(carCategortyBuilder::toCarCategoryResponse)
+                .collect(Collectors.toList()));
+    }
+
+    @PutMapping(value = "/categories/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<CarCategoryResponse> updateCarCategories(@RequestBody @Valid CarCategoryRequest carCategoryRequest,
+                                                                   @PathVariable Long id) {
+        CarCategory carCategory = carCategortyBuilder.toCarCategory(carCategoryRequest);
+        CarCategory updatedCarCategory = carCategoryService.update(carCategory, id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(carCategortyBuilder.toCarCategoryResponse(updatedCarCategory));
+    }
+
+    @DeleteMapping(value = "/categories/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<HttpStatus> deleteCarCategory(@PathVariable Long id) {
+
+        carCategoryService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

@@ -1,4 +1,4 @@
-package com.academy.javabootcamp.converter.userConverter;
+package api.user.javabootcamp.converter.userConverter;
 
 import com.academy.javabootcamp.converter.UserSave;
 import com.academy.javabootcamp.dto.UserSaveRequest;
